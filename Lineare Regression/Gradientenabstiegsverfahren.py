@@ -12,7 +12,7 @@ def f_ableitung(x):
 x = 5
 plt.scatter(x, f(x), c="r") # Plotten 1 Punkt (Scatter Plot) mit der Farbe rot
 for i in range(0, 25):
-    steigung_x = f_ableitung(x)
+    steigung_x = f_ableitung(x) # X nährt sich 2 nach jeder Iteration (Minimum)
     x = x - 0.05 * steigung_x # 0.05 Schrittweite "Learning Rate"
     plt.scatter(x, f(x), c="r")
     print(x)

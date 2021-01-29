@@ -14,6 +14,7 @@ def J(a, x, y):
 
 
 # Ableitung = Gerade (Ableitung = 0: Extrempunkt der Kostenfunktion)
+# Kettenregel. Partielle Ableitung hinsichtlich a (a ist Variable, der Rest wie Zahlen)
 def J_ableitung_a(a, x, y):
     return -2 * x * (y - a * x)
 
@@ -24,7 +25,7 @@ lr = 0.05
 a = 1
 # Kosten werden nach jeder Iteration minimiert
 for i in range(0, 50):
-    da = J_ableitung_a(a, point[0], point[1])  # Ableitung (Steigung)
+    da = J_ableitung_a(a, point[0], point[1])  # Ableitung (Steigung) (nähert sich 0)
     print("da = " + str(da))
     a = a - lr * da  # a nähert sich 4 (möglichst exakte Steigung finden, sodass Kosten (Ableitung) gegen 0 ist
     print("a = " + str(a))
