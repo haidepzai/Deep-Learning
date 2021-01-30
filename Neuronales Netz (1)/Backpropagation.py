@@ -32,6 +32,7 @@ class NeuralNetwork(object):
     def __init__(self, lr = 0.1):
         self.lr = lr
 
+        # Gewichte mit kleinen Zahlen initialisieren
         self.w0 = np.random.randn(100, 784)
         self.w1 = np.random.randn(10, 100)
 
@@ -40,14 +41,19 @@ class NeuralNetwork(object):
         return expit(x)
 
     def train(self, X, y):
-        a0 = self.activation(self.w0 @ X.T)
+        # Eingabe erste Ebene (Aktivierung)
+        a0 = self.activation(self.w0 @ X.T)  # Matrizenmultiplikation aus logitische Regression
+        # Eingabe zweite Ebene (Matrizenmultiplikation mit dem Ergebnis/Ausgang der zweiten Ebene)
         pred = self.activation(self.w1 @ a0)
 
-        e1 = y.T - pred
-        e0 = e1.T @ self.w1
+        # Soll - Ist
+        e1 = y.T - pred # finaler error
+        # Backpropagation error
+        e0 = e1.T @ self.w1 # error aus der Ebene davor
 
         dw1 = e1 * pred * (1 - pred) @ a0.T / len(X)
-        dw0 = e0.T * a0 * (1 - a0) @ X / len(X)
+        # Backpropagation Steigung
+        dw0 = e0.T * a0 * (1 - a0) @ X / len(X) # X sind die Eingänge
 
         assert dw1.shape == self.w1.shape
         assert dw0.shape == self.w0.shape

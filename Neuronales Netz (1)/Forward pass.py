@@ -35,7 +35,7 @@ class NeuralNetwork(object):
         return expit(x) # Sigmoid Aktivierungsfunktion
 
     def predict(self, X):
-        # Eingabe erste Ebene
+        # Eingabe erste Ebene (Aktivierung)
         a0 = self.activation(self.w0 @ X.T) # Matrizenmultiplikation aus logitische Regression
         # Eingabe zweite Ebene (Matrizenmultiplikation mit dem Ergebnis/Ausgang der zweiten Ebene)
         pred = self.activation(self.w1 @ a0)
