@@ -24,7 +24,7 @@ points = np.array([
 def S(x):
     return 1 / (1 + np.exp(-x))
 
-
+# Verwendet die Sigmoid Funktion (> 0.5 = volljährig; < 0.5 = minderjährig)
 def f(a, b, x):
     return S(a * x + b)
 
@@ -54,7 +54,7 @@ for i in range(0, 10000):
     cost = J(a, b, points[:, 0], points[:, 1])
     print("Kosten: " + str(cost))
 
-
+print("Neue Parameter: " + str(a) + " und " + str(b))
 xs = np.arange(1, 60, 0.5)
 ys = f(a, b, xs)
 plt.plot(xs, ys)
@@ -65,3 +65,4 @@ plt.show()
 # Anwenden mit Testdaten
 print("----")
 print(f(a, b, np.array([16, 22])))
+print(f(a, b, 18))

@@ -22,6 +22,9 @@ def open_labels(filename):
 
 
 X_train = open_images("../mnist/train-images-idx3-ubyte.gz").reshape(-1, 784) # 60000 Zeilen (Nummer mit 28x28 Pixel)
+# print(X_train.shape) (60000, 784)
+plt.imshow(X_train[0].reshape(28, 28))
+plt.show()
 y_train = open_labels("../mnist/train-labels-idx1-ubyte.gz")
 # print(y_train.shape) # 60000 Datensätze
 print(y_train) # 1. Zahl ist eine 5
@@ -36,12 +39,12 @@ print(y_test) # 1. Zahl ist eine 7
 
 # Sigmoid Funktion
 def S(x):
-    return expit(x)
+    return expit(x) # Fertige Sigmoid Funktion, die schon implementiert wurde
     # return 1 / (1 + np.exp(-x))
 
 
 def f(w, b, x):
-    a = w @ x.T
+    a = w @ x.T # (Shape (10, 60000)
     return S(a.T + b).T
 
 
@@ -60,7 +63,7 @@ def J_ableitung_b(w, b, x, y):
 
 
 lr = 0.00001 # Lernrate
-w = np.zeros((10, 784)) # Gewichte mit 10 Zeilen unr 784 Spalten (28x28) (Gewichte)
+w = np.zeros((10, 784)) # Gewichte mit 10 Zeilen und 784 Spalten (28x28) (Gewichte)
 b = np.ones(10) # Zeilenvektor mit 10 Einträgen (bias)
 
 for i in range(0, 100):
